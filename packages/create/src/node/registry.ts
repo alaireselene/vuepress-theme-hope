@@ -15,7 +15,7 @@ const getUserRegistry = (bin: string): string =>
 export const getRegistry = async (lang: Lang, bin: string): Promise<string> => {
   const userRegistry = getUserRegistry(bin);
 
-  if (lang === "en-US" || userRegistry === npmmirrorRegistry)
+  if (lang === "en-US" || lang === "vi-VN" || userRegistry === npmmirrorRegistry)
     return userRegistry;
 
   const { registry } = await prompt<RegistryAnswer>([

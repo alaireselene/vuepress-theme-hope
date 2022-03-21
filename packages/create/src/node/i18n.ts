@@ -1,6 +1,6 @@
 import { prompt } from "inquirer";
 
-export type Lang = "zh-CN" | "en-US";
+export type Lang = "zh-CN" | "en-US" | "vi-VN";
 
 export interface CreateI18n {
   getVersion: string;
@@ -64,9 +64,33 @@ export const i18n: Record<Lang, CreateI18n> = {
     versionError:
       "This version is not a valid one. Version should be like 'x.x.x'",
     descriptionMessage: "Your project description",
-    licenseMessage: "Your project lincense",
+    // fix this English typo mistake in here.
+    licenseMessage: "Your project license",
     i18nMessage: "Does the project need mutiple languages?",
   },
+  // add vi-VN
+  "vi-VN": {
+    getVersion: "Đang tải các gói phụ thuộc mới nhất...",
+    createPackage: "Đang tạo package.json...",
+    updatePackage: "Đang cập nhật package.json...",
+    template: "Đang tạo mẫu...",
+    wait: "Quá trình tạo có thể mất vài phút, vui lòng kiên nhẫn chờ đợi.\nChúng tôi chưa thể xuất được hoàn toàn các quá trình con ra thanh tiến độ, nên quá trình tạo sẽ giống như bị đơ.",
+    install: "Cài đặt các gói phụ thuộc...",
+    success: "Khởi tạo thành công",
+    devServerAsk: "Bạn có muốn xem trước mẫu không?",
+    devServer:
+      "Đang chạy dev server...\nSau khi dev server starts chạy, Vui lòng truy cập đường dẫn server được cung cấp. (mặc định là'localhost:8080')",
+    hint: 'Gợi ý: Nên chạy "yarn run docs:dev" để chạy dev server.',
+    nameMessage: "Tên dự án của bạn",
+    nameError:
+      "tên gói chỉ nên chứa các ký tự 'a' - 'z', '0' - '9' và dấu gạch nối '-'",
+    versionMessage: "Phiên bản của của dự án",
+    versionError:
+      "Phiên bản không hợp lệ. Phiên bản nên có dạng 'x.x.x'",
+    descriptionMessage: "Miêu tả dự án",
+    licenseMessage: "Giấy phép dành cho dự án",
+    i18nMessage: "Dự án này có cần hỗ trợ đa ngôn ngữ không?",
+  }
 };
 
 interface LanguageResult {
@@ -80,7 +104,7 @@ export const getLanguage = async (): Promise<LanguageResult> => {
       name: "language",
       type: "list",
       message: "Select a language to display",
-      choices: ["en-US", "zh-CN"],
+      choices: ["en-US", "zh-CN", "vi-VN"],
     },
   ]);
 
